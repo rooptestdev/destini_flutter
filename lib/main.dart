@@ -14,12 +14,20 @@ class DestiniApp extends StatelessWidget {
       theme: ThemeData.dark(),
       home: Scaffold(
         appBar: AppBar(
+          backgroundColor: Colors.blueGrey,
+          centerTitle: true,
           title: Text(
-            'Take the quiz.',
+            'Make your choice.',
           ),
         ),
         body: SafeArea(
-          child: StoryPage(),
+          child: Container(
+            padding: EdgeInsets.symmetric(
+              horizontal: 10.0,
+              vertical: 10.0,
+            ),
+            child: StoryPage(),
+          ),
         ),
       ),
     );
@@ -36,6 +44,55 @@ class StoryPage extends StatefulWidget {
 class _StoryPageState extends State<StoryPage> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Expanded(
+          flex: 5,
+          child: Center(
+            child: Text(
+              'Add the story here.',
+              style: TextStyle(
+                fontSize: 25.0,
+              ),
+            ),
+          ),
+        ),
+        Expanded(
+          child: TextButton(
+            style: TextButton.styleFrom(
+              backgroundColor: Colors.orange,
+            ),
+            onPressed: () {},
+            child: Text(
+              'First choice.',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 20.0,
+              ),
+            ),
+          ),
+        ),
+        SizedBox(
+          height: 20.0,
+        ),
+        Expanded(
+          child: TextButton(
+            style: TextButton.styleFrom(
+              backgroundColor: Colors.teal,
+            ),
+            onPressed: () {},
+            child: Text(
+              'Second choice',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 20.0,
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
   }
 }
