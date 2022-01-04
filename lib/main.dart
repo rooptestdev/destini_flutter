@@ -11,11 +11,31 @@ class DestiniApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+      theme: ThemeData.dark(),
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text(
+            'Take the quiz.',
+          ),
+        ),
+        body: SafeArea(
+          child: StoryPage(),
+        ),
       ),
-      home: Container(),
     );
+  }
+}
+
+class StoryPage extends StatefulWidget {
+  const StoryPage({Key? key}) : super(key: key);
+
+  @override
+  _StoryPageState createState() => _StoryPageState();
+}
+
+class _StoryPageState extends State<StoryPage> {
+  @override
+  Widget build(BuildContext context) {
+    return Container();
   }
 }
