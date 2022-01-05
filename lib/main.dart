@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'story_bank.dart';
 
@@ -52,7 +53,9 @@ class _StoryPageState extends State<StoryPage> {
             child: Text(
               storyBank.getStoryTitle(),
               style: TextStyle(
-                fontSize: 25.0,
+                fontSize: 35.0,
+                fontFamily: 'Waterfall',
+                fontWeight: FontWeight.bold,
               ),
             ),
           ),
@@ -73,6 +76,8 @@ class _StoryPageState extends State<StoryPage> {
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 20.0,
+                fontFamily: 'Gruppo',
+                fontWeight: FontWeight.bold,
               ),
             ),
           ),
@@ -98,6 +103,8 @@ class _StoryPageState extends State<StoryPage> {
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 20.0,
+                  fontFamily: 'Gruppo',
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ),
