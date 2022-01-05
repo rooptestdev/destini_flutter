@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'story_bank.dart';
 
 void main() {
   runApp(const DestiniApp());
@@ -7,25 +8,21 @@ void main() {
 class DestiniApp extends StatelessWidget {
   const DestiniApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData.dark(),
       home: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.blueGrey,
-          centerTitle: true,
-          title: Text(
-            'Make your choice.',
-          ),
-        ),
-        body: SafeArea(
-          child: Container(
-            padding: EdgeInsets.symmetric(
-              horizontal: 10.0,
-              vertical: 10.0,
+        body: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('images/background.png'),
+              fit: BoxFit.cover,
             ),
+          ),
+          padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
+          constraints: BoxConstraints.expand(),
+          child: SafeArea(
             child: StoryPage(),
           ),
         ),
@@ -42,6 +39,7 @@ class StoryPage extends StatefulWidget {
 }
 
 class _StoryPageState extends State<StoryPage> {
+  StoryBank storyBank = StoryBank();
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -52,7 +50,7 @@ class _StoryPageState extends State<StoryPage> {
           flex: 5,
           child: Center(
             child: Text(
-              'Add the story here.',
+              storyBank.getStoryTitle(),
               style: TextStyle(
                 fontSize: 25.0,
               ),
@@ -64,9 +62,14 @@ class _StoryPageState extends State<StoryPage> {
             style: TextButton.styleFrom(
               backgroundColor: Colors.orange,
             ),
-            onPressed: () {},
+            onPressed: () {
+              print('First choice');
+              setState(() {
+                storyBank.nextStory(1);
+              });
+            },
             child: Text(
-              'First choice.',
+              storyBank.getChoice1(),
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 20.0,
@@ -74,20 +77,28 @@ class _StoryPageState extends State<StoryPage> {
             ),
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 20.0,
         ),
         Expanded(
-          child: TextButton(
-            style: TextButton.styleFrom(
-              backgroundColor: Colors.teal,
-            ),
-            onPressed: () {},
-            child: Text(
-              'Second choice',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 20.0,
+          child: Visibility(
+            visible: storyBank.buttonVisible(),
+            child: TextButton(
+              style: TextButton.styleFrom(
+                backgroundColor: Colors.teal,
+              ),
+              onPressed: () {
+                print('Second choice');
+                setState(() {
+                  storyBank.nextStory(2);
+                });
+              },
+              child: Text(
+                storyBank.getChoice2(),
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20.0,
+                ),
               ),
             ),
           ),
